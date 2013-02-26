@@ -5,9 +5,34 @@
 		<script>
 			function putCoin(event){
 				var myVar = event;
-				var bgImage = document.getElementById("43").style.backrounImge;
-				var doc = document.getElementById("43");
-				doc.style.backgroundImage = "url('img/XmiddleRight.gif')";
+				var cell = event.target;
+				changeImage(cell);	
+				
+				
+			}
+			function changeImage(cell)
+			{
+				var classList = cell.classList;
+				if(classList.contains('middleRight'))
+				{
+					classList.remove('middleRight');
+					classList.add('XmiddleRight');
+				}
+				if(classList.contains('middleRight'))
+				{
+					classList.remove('middleRight');
+					classList.add('XmiddleLeft');
+				}
+				if(classList.contains('middleUp'))
+				{
+					classList.remove('middleUp');
+					classList.add('XmiddleUp');
+				}	
+				if(classList.contains('middleDown'))
+				{
+					classList.remove('middleDown');
+					classList.add('XmiddleDown');
+				}				
 			}
 		</script>
 	</head>

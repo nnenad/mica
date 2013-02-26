@@ -1,0 +1,74 @@
+.cell{
+	float: left;
+	width:31px;
+	height:31px;
+	margin:0px;
+	padding:0px;
+}
+#mainContainer{
+	margin: 0 auto;
+	width: 800px;
+	height: 600px;
+}
+
+.border{
+	border: 1px solid green;
+}
+
+.row{
+	width: 700px;
+	height: 31px;
+	margin:0;
+	padding:0;
+}
+.hrLine{
+	background-image:url('../img/hrLine.gif');
+}
+
+.verticaLline{
+	background-image:url('../img/verticalLine.gif');
+}
+
+.cornerLeftTop{
+	background-image:url('../img/cornerLeftTop.gif');
+}
+
+.cornerRightTop{
+	background-image:url('../img/cornerRightTop.gif');
+}
+
+.cornerRightBottom{
+	background-image:url('../img/cornerRightBottom.gif');
+}
+
+.cornerLeftBottom{
+	background-image:url('../img/cornerLeftBottom.gif');
+}
+
+.middleLeft{
+	background-image:url('../img/middleLeft.gif');
+}
+
+.middleRight{
+	background-image:url('../img/middleRight.gif');
+}
+
+.XmiddleRight{
+	background-image:url('../img/XmiddleRight.gif');
+}
+
+.middleUp{
+	background-image:url('../img/middleUp.gif');
+}
+
+.middleDown{
+	background-image:url('../img/middleDown.gif');
+}
+
+.cross{
+	background-image:url('../img/cross.gif');
+}
+
+.noImage{
+	background-image: none;
+}

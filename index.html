@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title> m.i.c.a</title>
+		<link rel="stylesheet" type="text/css" href="styles/board.css"> 
+		<script>
+			function putCoin(event){
+				var myVar = event;
+				var bgImage = document.getElementById("43").style.backrounImge;
+				var doc = document.getElementById("43");
+				doc.style.backgroundImage = "url('img/XmiddleRight.gif')";
+			}
+		</script>
+	</head>
+	<body>
+		<div id="mainContainer" class="border">
+			<div class="row">
+				<div class="cell cornerLeftTop" id="11"></div>
+				<div class="cell hrLine" id="12"></div>
+				<div class="cell hrLine" id="13"></div>
+				<div class="cell hrLine" id="14"></div>
+				<div class="cell middleUp" id="15"></div>
+				<div class="cell hrLine" id="16"></div>
+				<div class="cell hrLine" id="17"></div>
+				<div class="cell hrLine" id="18"></div>
+				<div class="cell cornerRightTop" id="19"></div>
+			</div>
+				
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftTop"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cross"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightTop"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftTop"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell middleDown"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightTop"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell middleLeft"></div>
+				<div class="cell cross"></div>
+				<div class="cell middleRight" id="43" onclick="putCoin(event)"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell middleLeft"></div>
+				<div class="cell cross"></div>
+				<div class="cell middleRight"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftBottom"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell middleUp"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightBottom"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftBottom"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cross"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightBottom"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell cornerLeftBottom"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell middleDown"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightBottom"></div>
+			</div>	
+		</div>			
+	</body>	
+</html>

@@ -14,6 +14,361 @@
     <![endif]-->
 
     <title>Mica by nnenad</title>
+	
+	<link rel="stylesheet" type="text/css" href="styles/board.css"> 
+		<script>
+		
+			var red = true;
+			var redCoins = 9;
+			var blueCoins = 9;
+			redToEat = false;
+			blueToEat = false;
+			moveMode = false;
+			redArray=[];
+			blueArray=[];
+			winArray = [[1,2,3],[4,5,6],[7,8,9],[10,11,12],
+						[13,14,15],[16,17,18],[19,20,21],[22,23,24],
+						[1,10,22],[4,11,19],[7,12,16],[2,5,8],[17,20,23],[9,13,18],[6,14,21],[3,15,24]];
+			
+			function iterateArray2D(niz)
+			{
+				for(i in winArray){
+					var value = winArray[i];
+					if(compareArrays(value, niz))
+						return true;
+				}
+				return false;
+			}
+
+			function iterateArray2D(niz1, niz2)
+			{
+				for(i in niz1){
+					var value = niz1[i];
+					if(compareArrays(value, niz2))
+						return true;
+				}
+				return false;
+			}
+			
+			function posibleArrayForId(id){
+				posArrays = [];
+				for(i in winArray){
+					var value = winArray[i];
+					if(contains(value,id))
+						posArrays.push(value);
+				}
+				return posArrays;
+			}
+
+			function compareArrays(array1, array2){
+				for(i in array1){
+					var br = array1[i];
+					if(!contains(array2, br))
+						return false;
+				}
+				return true;
+			}
+			function contains(arrayA, value){
+				for (i in arrayA) {
+					if (arrayA[i] == value) 
+					return true;
+				}
+				return false;
+			}
+			
+			function isRow(arr, id){
+				return iterateArray2D(posibleArrayForId(id), arr);
+			}
+			function putCoin(event){
+					var myVar = event;
+					var cell = event.target;
+				if(!(redToEat || blueToEat)){
+					
+					if(!moveMode)
+					{
+						if(!cell.seald)
+						{
+							changeImage(cell);
+							if(red)
+							{
+								redCoins--;
+								changeNumberOfCoins("Red");
+								redArray.push(parseInt(cell.id));
+								var win = isRow(redArray, cell.id);
+								if(win){
+									alert('red to eat');
+									redToEat = true;
+									red = !red;
+									return;
+								}
+							}else
+							{
+								blueCoins--;
+								changeNumberOfCoins("Blue");
+								blueArray.push(parseInt(cell.id));
+								var win = isRow(blueArray, cell.id);
+								if(win){
+									alert('blue to eat');
+									blueToEat = true;
+									red = !red;
+									return;
+								}
+							}
+						
+							red = !red;			
+						}
+						if(blueCoins == 0 ){
+							moveMode = true;
+						}
+					}
+				}else{
+					if(cell.seald){
+						if(redToEat)
+						{
+							if(contains(blueArray, cell.id))
+							{
+								if(!isRow(blueArray, cell.id))
+								{
+									changeBackImage(cell);
+									var lastIndex = blueArray.lastIndexOf(parseInt(cell.id));
+									blueArray.splice(lastIndex,1);
+									cell.seald = false;
+									redToEat = false;
+								}
+							}
+							
+						}
+						if(blueToEat)
+						{
+							if(contains(redArray, cell.id))
+							{
+								if(!isRow(redArray,cell.id))
+								{
+									changeBackImage(cell);
+									var lastIndex = redArray.lastIndexOf(parseInt(cell.id));
+									redArray.splice(lastIndex,1);
+									cell.seald = false;
+									blueToEat = false;
+								}
+							}
+							
+						}
+					}
+				}
+				
+			}
+			
+			
+			function changeNumberOfCoins(elementId)
+			{
+				
+				var element = document.getElementById(elementId);
+				if(red)
+				{
+					element.innerHTML = (elementId + " coins = " + redCoins);
+				}else
+				{
+					element.innerHTML = (elementId + " coins = " + blueCoins);
+				}
+			}
+			function changeImage(cell)
+			{
+				
+				var classList = cell.classList;
+				cell.seald = true;
+				
+				if(classList.contains('middleRight'))
+				{
+					
+					classList.remove('middleRight');
+					if(red)
+					{
+						classList.add('XmiddleRight');
+					}else
+					{
+						classList.add('XBmiddleRight');
+					}
+				}
+				if(classList.contains('middleLeft'))
+				{
+					classList.remove('middleLeft');
+					if(red)
+					{
+						classList.add('XmiddleLeft');
+					}else
+					{
+						classList.add('XBmiddleLeft');
+					}
+				}
+				if(classList.contains('middleUp'))
+				{
+					classList.remove('middleUp');
+					if(red)
+					{
+						classList.add('XmiddleUp');
+					}else
+					{
+						classList.add('XBmiddleUp');
+					}
+				}	
+				if(classList.contains('middleDown'))
+				{
+					classList.remove('middleDown');
+					if(red)
+					{
+						classList.add('XmiddleDown');
+					}else
+					{
+						classList.add('XBmiddleDown');
+					}
+				}
+				if(classList.contains('cornerLeftBottom'))
+				{
+					classList.remove('cornerLeftBottom');
+					if(red)
+					{
+						classList.add('XcornerLeftBottom');
+					}else
+					{
+						classList.add('XBcornerLeftBottom');
+					}
+				}	
+				if(classList.contains('cornerLeftTop'))
+				{
+					classList.remove('cornerLeftTop');
+					if(red)
+					{
+						classList.add('XcornerLeftTop');
+					}else
+					{
+						classList.add('XBcornerLeftTop');
+					}
+				}
+				if(classList.contains('cornerRightBottom'))
+				{
+					classList.remove('cornerRightBottom');
+					if(red)
+					{
+						classList.add('XcornerRightBottom');
+					}else
+					{
+						classList.add('XBcornerRightBottom');
+					}
+				}
+				if(classList.contains('cornerRightTop'))
+				{
+					classList.remove('cornerRightTop');
+					if(red)
+					{
+						classList.add('XcornerRightTop');
+					}else
+					{
+						classList.add('XBcornerRightTop');
+					}
+				}	
+				if(classList.contains('cross'))
+				{
+					classList.remove('cross');
+					if(red)
+					{
+						classList.add('Xcross');
+					}else
+					{
+						classList.add('XBcross');
+					}
+				}
+			}
+			
+			function changeBackImage(cell)
+			{
+				
+				var classList = cell.classList;
+				cell.seald = true;
+				
+				if(classList.contains('XmiddleRight') || classList.contains('XBmiddleRight'))
+				{
+					
+					classList.add('middleRight');
+					
+						classList.remove('XmiddleRight');
+					
+						classList.remove('XBmiddleRight');
+					
+				}
+				if(classList.contains('XmiddleLeft') || classList.contains('XBmiddleLeft'))
+				{
+					classList.add('middleLeft');
+					
+						classList.remove('XmiddleLeft');
+					
+						classList.remove('XBmiddleLeft');
+					
+				}
+				if(classList.contains('XmiddleUp') || classList.contains('XBmiddleUp'))
+				{
+					classList.add('middleUp');
+					
+						classList.remove('XmiddleUp');
+					
+						classList.remove('XBmiddleUp');
+					
+				}	
+				if(classList.contains('XmiddleDown') || classList.contains('XBmiddleDown'))
+				{
+					classList.add('middleDown');
+					
+						classList.remove('XmiddleDown');
+					
+						classList.remove('XBmiddleDown');
+					
+				}
+				if(classList.contains('XcornerLeftBottom') ||  classList.contains('XBcornerLeftBottom') )
+				{
+					classList.add('cornerLeftBottom');
+					
+						classList.remove('XcornerLeftBottom');
+					
+						classList.remove('XBcornerLeftBottom');
+					
+				}	
+				if(classList.contains('XcornerLeftTop') || classList.contains('XBcornerLeftTop'))
+				{
+					classList.add('cornerLeftTop');
+					
+						classList.remove('XcornerLeftTop');
+					
+						classList.remove('XBcornerLeftTop');
+					
+				}
+				if(classList.contains('XcornerRightBottom') || classList.contains('XBcornerRightBottom'))
+				{
+					classList.add('cornerRightBottom');
+					
+						classList.remove('XcornerRightBottom');
+					
+						classList.remove('XBcornerRightBottom');
+					
+				}
+				if(classList.contains('XcornerRightTop') || classList.contains('XBcornerRightTop'))
+				{
+					classList.add('cornerRightTop');
+					
+						classList.remove('XcornerRightTop');
+					
+						classList.remove('XBcornerRightTop');
+					
+				}	
+				if(classList.contains('Xcross') || classList.contains('XBcross'))
+				{
+					classList.add ('cross');
+					
+						classList.remove('Xcross');
+					
+						classList.remove('XBcross');
+					
+				}
+			}
+		</script>
   </head>
 
   <body>
@@ -28,32 +383,94 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+          <div id="mainContainer" class="border">
+			<div class="row">
+				<div class="cell cornerLeftTop" id="1" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell middleUp" id="2" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightTop" id="3" onclick="putCoin(event)"></div>
+			</div>
+				
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftTop" id="4" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cross" id="5" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightTop" id="6" onclick="putCoin(event)"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftTop" id="7" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell middleDown" id="8" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightTop" id="9" onclick="putCoin(event)"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell middleLeft" id="10" onclick="putCoin(event)"></div>
+				<div class="cell cross" id="11" onclick="putCoin(event)"></div>
+				<div class="cell middleRight" id="12" onclick="putCoin(event)"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell middleLeft" id="13" onclick="putCoin(event)"></div>
+				<div class="cell cross" id="14" onclick="putCoin(event)"></div>
+				<div class="cell middleRight" id="15" onclick="putCoin(event)"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftBottom" id="16" onclick="putCoin(event)"> </div>
+				<div class="cell hrLine"></div>
+				<div class="cell middleUp" id="17" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightBottom" id="18" onclick="putCoin(event)"></div>
+				<div class="cell verticaLline"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell verticaLline"></div>
+				<div class="cell cornerLeftBottom" id="19" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cross" id="20" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightBottom" id="21" onclick="putCoin(event)"></div>
+				<div class="cell verticaLline"></div>
+			</div>
+			
+			<div class="row">
+				<div class="cell cornerLeftBottom" id="22" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell middleDown" id="23" onclick="putCoin(event)"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell hrLine"></div>
+				<div class="cell cornerRightBottom" id="24" onclick="putCoin(event)"></div>
+			</div>	
+			
+			<div id="Red">Red coins = 9</div>
+			<div id="Blue">Blue coins = 9</div>
+		</div>			
         </section>
 
         <aside id="sidebar">

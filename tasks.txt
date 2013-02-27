@@ -1,0 +1,3 @@
+uoceni bagovi
+1. Ne smanjuje red or blue coins kada se jede
+2. what if there nothing to eat?

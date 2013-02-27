@@ -33,20 +33,60 @@
 	background-image:url('../img/cornerLeftTop.gif');
 }
 
+.XcornerLeftTop{
+	background-image:url('../img/XcornerLeftTop.gif');
+}
+
+.XBcornerLeftTop{
+	background-image:url('../img/XBcornerLeftTop.gif');
+}
+
 .cornerRightTop{
 	background-image:url('../img/cornerRightTop.gif');
+}
+
+.XcornerRightTop{
+	background-image:url('../img/XcornerRightTop.gif');
+}
+
+.XBcornerRightTop{
+	background-image:url('../img/XBcornerRightTop.gif');
 }
 
 .cornerRightBottom{
 	background-image:url('../img/cornerRightBottom.gif');
 }
 
+.XcornerRightBottom{
+	background-image:url('../img/XcornerRightBottom.gif');
+}
+
+.XBcornerRightBottom{
+	background-image:url('../img/XBcornerRightBottom.gif');
+}
+
 .cornerLeftBottom{
 	background-image:url('../img/cornerLeftBottom.gif');
 }
 
+.XcornerLeftBottom{
+	background-image:url('../img/XcornerLeftBottom.gif');
+}
+
+.XBcornerLeftBottom{
+	background-image:url('../img/XBcornerLeftBottom.gif');
+}
+
 .middleLeft{
 	background-image:url('../img/middleLeft.gif');
+}
+
+.XmiddleLeft{
+	background-image:url('../img/XmiddleLeft.gif');
+}
+
+.XBmiddleLeft{
+	background-image:url('../img/XBmiddleLeft.gif');
 }
 
 .middleRight{
@@ -57,16 +97,44 @@
 	background-image:url('../img/XmiddleRight.gif');
 }
 
+.XBmiddleRight{
+	background-image:url('../img/XBmiddleRight.gif');
+}
+
 .middleUp{
 	background-image:url('../img/middleUp.gif');
+}
+
+.XmiddleUp{
+	background-image:url('../img/XmiddleUp.gif');
+}
+
+.XBmiddleUp{
+	background-image:url('../img/XBmiddleUp.gif');
 }
 
 .middleDown{
 	background-image:url('../img/middleDown.gif');
 }
 
+.XmiddleDown{
+	background-image:url('../img/XmiddleDown.gif');
+}
+
+.XBmiddleDown{
+	background-image:url('../img/XBmiddleDown.gif');
+}
+
 .cross{
 	background-image:url('../img/cross.gif');
+}
+
+.Xcross{
+	background-image:url('../img/Xcross.gif');
+}
+
+.XBcross{
+	background-image:url('../img/XBcross.gif');
 }
 
 .noImage{
